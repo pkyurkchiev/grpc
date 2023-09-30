@@ -12,6 +12,13 @@ service StocksService {
 	rpc GetStocks (google.protobuf.Empty) returns (StocksResponse);
 	rpc GetStockPrice (StockViewModel) returns (StockPriceResponse);
 	rpc GetStockPriceStream (google.protobuf.Empty) returns (stream StockPriceResponse);
+	rpc GetStocksPrices (stream StockViewModel) returns (StocksPricesResponse);
+	rpc GetCompanyStockPriceStream (stream StockViewModel) returns (stream StockPriceResponse);
+}
+
+message StocksPricesResponse
+{
+	repeated StockPriceResponse stocks = 1;
 }
 
 message StockViewModel {
