@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+import "stock_view_model.proto";
+
+option csharp_namespace = "StockBroker.gRPC";
+
