@@ -6,7 +6,6 @@ namespace SB.Server.Services
 {
     public class StockDataService : StocksService.StocksServiceBase
     {
-        private readonly ILogger<StockDataService> _logger;
         private readonly List<StockViewModel> _stocks = new()
         {
             { new() { StockId = "META", StockName = "Meta Platforms Inc" } },
@@ -20,11 +19,6 @@ namespace SB.Server.Services
             { new() { StockId = "AIR", StockName = "Airbus SE" }},
             { new() { StockId = "MC", StockName = "LVMH Moet Hennessy Louis Vuitton SE" } },
         };
-
-        public StockDataService(ILogger<StockDataService> logger)
-        {
-            _logger = logger;
-        }
 
         public override Task<StocksResponse> GetStocks(Empty request, ServerCallContext context)
         {

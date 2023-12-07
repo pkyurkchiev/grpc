@@ -8,10 +8,10 @@ using System.Threading.Channels;
 namespace SB.Server.Services
 {
     [Authorize]
-    public class StockDataService : StocksService.StocksServiceBase
+    public class StockDataService(ILogger<StockDataService> logger, IJWTAuthenticationsManager authManager) : StocksService.StocksServiceBase
     {
-        private readonly ILogger<StockDataService> _logger;
-        private readonly IJWTAuthenticationsManager _authManager;
+        private readonly ILogger<StockDataService> _logger = logger;
+        private readonly IJWTAuthenticationsManager _authManager = authManager;
         private readonly List<StockViewModel> _stocks = new()
         {
             { new() { StockId = "META", StockName = "Meta Platforms Inc" } },
@@ -26,20 +26,12 @@ namespace SB.Server.Services
             { new() { StockId = "MC", StockName = "LVMH Moet Hennessy Louis Vuitton SE" } },
         };
 
-        public StockDataService(ILogger<StockDataService> logger, IJWTAuthenticationsManager authManager)
-        {
-            _logger = logger;
-            _authManager = authManager;
-        }
-
         [AllowAnonymous]
         public override Task<AuthenticateResponse> Authenticate(ClientCredentialsRequest request, ServerCallContext context)
         {
             string? token = _authManager.Authenticate(request.ClientId, request.ClientSecret);
-            if (token == null)
-            {
-                throw new ArgumentNullException(nameof(token));
-            }
+
+            ArgumentNullException.ThrowIfNull(token);
 
             return Task.FromResult(new AuthenticateResponse() { BearerToken = token });
         }
@@ -83,7 +75,7 @@ namespace SB.Server.Services
         public override async Task<StocksPricesResponse> GetStocksPrices(IAsyncStreamReader<StockViewModel> requestStream, ServerCallContext context)
         {
             Random rnd = new(100);
-            List<StockViewModel> inputStocks = new();
+            List<StockViewModel> inputStocks = [];
             await foreach (var request in requestStream.ReadAllAsync())
             {
                 inputStocks.Add(_stocks.First(x => x.StockId == request.StockId));
@@ -119,7 +111,7 @@ namespace SB.Server.Services
             });
 
             // a list of tasks handling requests concurrently
-            List<Task> getCompanyStockPriceStreamRequestTasks = new();
+            List<Task> getCompanyStockPriceStreamRequestTasks = [];
 
             try
             {

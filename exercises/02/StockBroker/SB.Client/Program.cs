@@ -2,7 +2,6 @@
 using Grpc.Core;
 using Grpc.Net.Client;
 using StockBroker.gRPC;
-using System.Reflection.PortableExecutable;
 using static StockBroker.gRPC.StocksService;
 
 namespace SB.Client
@@ -11,10 +10,7 @@ namespace SB.Client
     {
         static async Task Main(string[] args)
         {
-            if (args is null)
-            {
-                throw new ArgumentNullException(nameof(args));
-            }
+            ArgumentNullException.ThrowIfNull(args);
 
             using var channel = GrpcChannel.ForAddress("http://localhost:5082");
             StocksServiceClient client = new(channel);
