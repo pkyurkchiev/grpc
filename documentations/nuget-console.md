@@ -1,11 +1,11 @@
 # NuGet Package Manager Console Guide
 
 
-** Create migration**
+**Create migration**
    - *add-migration [name]*
 
-** Update database with applying all changes on the context**
+**Update database with applying all changes on the context**
    - *update-database*
 
-** Remove migration**
+**Remove migration**
    - *remove-migration*
