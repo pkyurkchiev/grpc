@@ -1,5 +1,5 @@
 ## Introduction to gRPC course
-This repository is part of the gRPC course for all students of Plovdiv University.\
+<sup>This repository is part of the gRPC course for all students of Plovdiv University.</sup>\
 The course is designed to provide an overview of the possibilities of creating web PRC services using .Net, as well as lay a foundation in building PRC applications. The widely used gRPC development framework will be reviewed in detail. By the end of the course, you will be able to package the code and upload it to a real environment. Additionally, we will cover the basic ways to track important web services metrics.
 
 
