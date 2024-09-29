@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option csharp_namespace = "FirstGrpcService";
+
+package greet;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc Calculator(CalculatorRequest) returns (CalculatorResponse);
+  rpc MultiCalculator(MultiCalculatorRequest) returns (CalculatorResponse);
+}
+
+enum CalculatorTypeEnum {
+	Circle = 0;
+	Square = 1;
+}
+
+message MultiCalculatorRequest {
+	double a = 1;
+	double b = 2;
+	CalculatorTypeEnum type = 3;
+}
+
+message CalculatorRequest {
+	double a = 1;
+	double b = 2;
+}
+
+message CalculatorResponse {
+	string perimeter = 1;
+	string area = 2;
+}
+
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
