@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Server", "SB.Server\SB.Server.csproj", "{25CD25B6-4E23-4476-9371-67198C83AF97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protos", "protos", "{03DDC971-CB9E-461B-BAB3-B708F972662F}"
+	ProjectSection(SolutionItems) = preProject
+		protos\stocks_service.proto = protos\stocks_service.proto
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "messaging", "messaging", "{8689E29C-1D22-417A-9DAC-1C49BE28AD95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "requests", "requests", "{7B0D2BB9-B344-4E62-A64E-7E4A6B395CD8}"
+	ProjectSection(SolutionItems) = preProject
+		protos\messaging\requests\client_credentials_request.proto = protos\messaging\requests\client_credentials_request.proto
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "responses", "responses", "{D32F8116-E2C0-498D-931A-EFD25BD04B7C}"
+	ProjectSection(SolutionItems) = preProject
+		protos\messaging\responses\authentication_response.proto = protos\messaging\responses\authentication_response.proto
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Client", "SB.Client\SB.Client.csproj", "{BE15B96C-6D8D-40E5-BD5C-9E0163D7507A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25CD25B6-4E23-4476-9371-67198C83AF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25CD25B6-4E23-4476-9371-67198C83AF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25CD25B6-4E23-4476-9371-67198C83AF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25CD25B6-4E23-4476-9371-67198C83AF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE15B96C-6D8D-40E5-BD5C-9E0163D7507A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE15B96C-6D8D-40E5-BD5C-9E0163D7507A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE15B96C-6D8D-40E5-BD5C-9E0163D7507A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE15B96C-6D8D-40E5-BD5C-9E0163D7507A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8689E29C-1D22-417A-9DAC-1C49BE28AD95} = {03DDC971-CB9E-461B-BAB3-B708F972662F}
+		{7B0D2BB9-B344-4E62-A64E-7E4A6B395CD8} = {8689E29C-1D22-417A-9DAC-1C49BE28AD95}
+		{D32F8116-E2C0-498D-931A-EFD25BD04B7C} = {8689E29C-1D22-417A-9DAC-1C49BE28AD95}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD50BC26-8050-4CCD-A7A5-026991889CB7}
+	EndGlobalSection
+EndGlobal
