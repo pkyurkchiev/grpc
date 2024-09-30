@@ -28,7 +28,10 @@ message StocksResponse {
 }
 
 message ClientCredentialsRequest {
+	string clientId = 1;
+	string clientSecret = 2;
 }
 
 message AuthenticateResponse {
+	string bearerToken = 1;
 }

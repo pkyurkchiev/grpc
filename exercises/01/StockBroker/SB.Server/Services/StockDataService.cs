@@ -1,11 +1,16 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
+using SB.Server.Authentications;
 using StockBroker.gRPC;
 
 namespace SB.Server.Services
 {
-    public class StockDataService : StocksService.StocksServiceBase
+    [Authorize]
+    public class StockDataService(ILogger<StockDataService> logger, IJWTAuthenticationsManager authManager) : StocksService.StocksServiceBase
     {
+        private readonly ILogger<StockDataService> _logger = logger;
+        private readonly IJWTAuthenticationsManager _authManager = authManager;
         private readonly List<StockViewModel> _stocks = new()
         {
             { new() { StockId = "META", StockName = "Meta Platforms Inc" } },
@@ -19,6 +24,16 @@ namespace SB.Server.Services
             { new() { StockId = "AIR", StockName = "Airbus SE" }},
             { new() { StockId = "MC", StockName = "LVMH Moet Hennessy Louis Vuitton SE" } },
         };
+
+        [AllowAnonymous]
+        public override Task<AuthenticateResponse> Authenticate(ClientCredentialsRequest request, ServerCallContext context)
+        {
+            string? token = _authManager.Authenticate(request.ClientId, request.ClientSecret);
+
+            ArgumentNullException.ThrowIfNull(token);
+
+            return Task.FromResult(new AuthenticateResponse() { BearerToken = token });
+        }
 
         public override Task<StocksResponse> GetStocks(Empty request, ServerCallContext context)
         {
